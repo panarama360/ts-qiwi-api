@@ -16,6 +16,8 @@ import {Bank} from "./enum/Bank";
 import {SetHookResponce} from "./responces/SetHookResponce";
 import {WebHookPayload} from "./web-hook/WebHookPayload";
 import * as crypto from "crypto";
+import {CardType} from "./enum/CardType";
+import {TxnType} from "./enum/TxnType";
 
 export class QiwiApi {
 
@@ -144,7 +146,7 @@ export class QiwiApi {
         })
     }
 
-    async paymentToCard(amount: number, card: string, cardId?: '1963'|'21013'|'22351'|'1960'| '21012'| '31652'): Promise<CardPaymentResponce>{
+    async paymentToCard(amount: number, card: string, cardId?: CardType): Promise<CardPaymentResponce>{
         (cardId as any) = cardId || await this.detectCardProvider(card);
         return this.reqestDefault.post(`/sinap/api/v2/terms/${cardId}/payments`, {
             json: {
@@ -207,7 +209,7 @@ export class QiwiApi {
         })
     }
 
-    async validatePayload(payload: WebHookPayload){
+    async validatePayload(payload: WebHookPayload): Promise<boolean>{
         if(!this.hookKey || !this.activeHookId) {
             this.activeHookId = (await this.getActiveHookInfo()).hookId
             this.hookKey = (await this.getSecretKeyHook(this.activeHookId)).key;
@@ -217,7 +219,7 @@ export class QiwiApi {
         return crypto.createHmac('SHA256', secret).update(fields).digest("hex") ===  payload.hash;
     }
 
-    setHook(param: string, txnType: 0|1|2, hookType: number = 1): Promise<SetHookResponce>{
+    setHook(param: string, txnType: TxnType, hookType: number = 1): Promise<SetHookResponce>{
         return this.reqestDefault.put(`/payment-notifier/v1/hooks`, {
             json:{
                 param, txnType, hookType
@@ -241,7 +243,7 @@ export class QiwiApi {
         return this.reqestDefault.get(`/payment-notifier/v1/hooks/active`)
     }
 
-    testHook(){
+    testHook(): Promise<{response:string}>{
         return this.reqestDefault.get(`/payment-notifier/v1/hooks/test`)
     }
 
