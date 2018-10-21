@@ -1,10 +1,13 @@
 {
   "name": "ts-qiwi-api",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "author": "Ivan Surkov <panarama360@gmail.com>",
+  "main": "build/index.js",
+  "typings": "build/types/index.d.ts",
+  "repository": "git@github.com:panarama360/ts-qiwi-api",
   "dependencies": {
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.5",
-    "sha256": "^0.2.0"
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "@types/request-promise-native": "^1.0.15"
