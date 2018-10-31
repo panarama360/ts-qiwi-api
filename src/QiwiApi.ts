@@ -220,7 +220,7 @@ export class QiwiApi {
 
     setHook(param: string, txnType: TxnType, hookType: number = 1): Promise<SetHookResponce>{
         return this.reqestDefault.put(`/payment-notifier/v1/hooks`, {
-            json:{
+            qs:{
                 param, txnType, hookType
             }
         })
