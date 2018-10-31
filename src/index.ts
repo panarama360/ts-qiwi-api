@@ -6,3 +6,4 @@ export * from "./enum/TransactionType";
 export * from "./enum/SourcesType";
 export * from "./enum/Recipients";
 export * from "./enum/IdentificationType";
+export * from "./enum/TxnType";

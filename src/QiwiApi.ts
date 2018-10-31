@@ -12,7 +12,6 @@ import {QiwiPaymentResponce} from "./responces/QiwiPaymentResponce";
 import {DetectOperatorResponce} from "./responces/DetectOperatorResponce";
 import {CardPaymentResponce} from "./responces/CardPaymentResponce";
 import {PhonePaymentResponce} from "./responces/PhonePaymentResponce";
-import {Bank} from "./enum/Bank";
 import {SetHookResponce} from "./responces/SetHookResponce";
 import {WebHookPayload} from "./web-hook/WebHookPayload";
 import * as crypto from "crypto";

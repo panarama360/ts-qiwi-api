@@ -1,5 +1,5 @@
 export enum TxnType {
-    Кeplenishment = 0,
+    Replenishment = 0,
     Payments = 1,
     All = 2
 }
